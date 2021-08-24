@@ -14,7 +14,7 @@ MAX_HOPS = int(os.getenv('MAX_HOPS')) or 5
 TIMEOUT_SEC = int(os.getenv('TIMEOUT_SEC')) or 5
 HOST = os.getenv('HOST') or 'www.google.com'
 LOG_LEVEL = int(os.getenv('LOG_LEVEL')) or logging.INFO
-LOG_OUT = os.getenv('LOG_OUT') or '/tmp/netcheck.log'
+LOG_OUT = os.getenv('LOG_OUT') or '/tmp/netcheck.ndjson'
 DEVICE = os.getenv('DEVICE') or os.uname()[1]
 
 
@@ -25,7 +25,7 @@ formatter = jsonlogger.JsonFormatter("%(created)s %(levelname)s %(message)s")
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 
-file_handler = logging.FileHandler('/tmp/netcheck.log', encoding='utf-8')
+file_handler = logging.FileHandler(LOG_OUT, encoding='utf-8')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
